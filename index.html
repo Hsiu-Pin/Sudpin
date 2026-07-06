@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="theme-transition">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南崧文創 | Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind 配置自訂樣式 -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .theme-transition {
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease, color 0.4s ease;
+        }
+        /* 隱藏滾動條，保持單頁乾淨視覺 */
+        body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 dark:bg-stone-950 dark:text-stone-100 theme-transition font-sans antialiased min-h-screen flex flex-col justify-between p-4 sm:p-8">
+
+    <!-- ==========================================
+         CONFIG 配置模組 (方便您在最上方直接替換內容)
+         ========================================== -->
+    <script>
+        const PORTFOLIO_CONFIG = {
+            // 1. 品牌與基本設定
+            brandName: "南崧文創",
+            
+            // 2. 聯繫方式 (下拉選單內容)
+            contact: {
+                email: "service@nansong.com.tw",
+                phone: "+886 2-1234-5678"
+            },
+            
+            // 3. 頂部設計理念區
+            concept: {
+                tagline: "DESIGN CONCEPT / 設計理念",
+                title: "「在繁複的世界中，探尋物件最純粹的本質與張力。」",
+                description: "我們深信，好的設計不需冗贅的裝飾。透過結構的重組、光影的留白與細緻的材質紋理，我們將概念具象化，在極簡的框限之中，釋放出最深遠的視覺故事與實用價值。"
+            },
+            
+            // 4. 三張精選作品設定 (按順序由左至右)
+            projects: [
+                {
+                    id: "PROJECT 01",
+                    title: "幾何虛實・光影雕琢",
+                    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
+                    fallbackText: "Design I" // 當圖片失效時顯示的替代字
+                },
+                {
+                    id: "PROJECT 02",
+                    title: "現代主義・結構留白",
+                    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800",
+                    fallbackText: "Design II"
+                },
+                {
+                    id: "PROJECT 03",
+                    title: "侘寂美學・自然共生",
+                    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800",
+                    fallbackText: "Design III"
+                }
+            ]
+        };
+    </script>
+
+    <!-- 頂部導覽 Minimal Header -->
+    <header class="w-full max-w-6xl mx-auto flex justify-between items-center py-4 relative z-40">
+        <a href="#" id="header-brand-name" class="text-xl font-bold tracking-widest bg-gradient-to-r from-stone-800 to-stone-500 dark:from-stone-100 dark:to-stone-400 bg-clip-text text-transparent">
+            <!-- 動態載入品牌名稱 -->
+        </a>
+        
+        <div class="flex items-center space-x-3 sm:space-x-6 relative">
+            <!-- 聯繫方式按鈕與下拉選單 -->
+            <div class="relative">
+                <button id="contact-toggle" class="text-sm font-medium tracking-wider text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition duration-300 flex items-center gap-1.5 focus:outline-none py-2 px-3 rounded-lg hover:bg-stone-200/30 dark:hover:bg-stone-800/30">
+                    <span>聯繫方式</span>
+                    <i id="contact-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                </button>
+                
+                <!-- 下拉選單選卡 -->
+                <div id="contact-dropdown" class="hidden absolute right-0 mt-2 w-64 bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-stone-200/80 dark:border-stone-800/85 rounded-xl p-4 shadow-xl z-50 transition-all duration-300 opacity-0 transform scale-95 origin-top-right">
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="text-stone-400 dark:text-stone-500 mt-0.5">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-stone-400 dark:text-stone-500 font-bold tracking-widest uppercase">Email</p>
+                                <a id="contact-email" href="" class="text-xs font-medium hover:text-primary-500 dark:hover:text-primary-400 transition-colors break-all"><!-- 動態載入 --></a>
+                            </div>
+                        </div>
+                        <div class="border-t border-stone-200/40 dark:border-stone-800/50 my-1"></div>
+                        <div class="flex items-start gap-3">
+                            <div class="text-stone-400 dark:text-stone-500 mt-0.5">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-stone-400 dark:text-stone-500 font-bold tracking-widest uppercase">Phone</p>
+                                <a id="contact-phone" href="" class="text-xs font-medium hover:text-primary-500 dark:hover:text-primary-400 transition-colors"><!-- 動態載入 --></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 深色模式切換按鈕 -->
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-stone-200/50 dark:hover:bg-stone-800/50 text-stone-600 dark:text-stone-300 focus:outline-none transition-colors duration-350">
+                <i id="theme-toggle-dark-icon" class="hidden fas fa-moon text-lg"></i>
+                <i id="theme-toggle-light-icon" class="hidden fas fa-sun text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主體內容區 (一頁式設計，置中對齊) -->
+    <main class="w-full max-w-6xl mx-auto flex-grow flex flex-col justify-center gap-8 sm:gap-12 py-6">
+        
+        <!-- 設計理念與介紹 -->
+        <section class="max-w-3xl mx-auto text-center space-y-4">
+            <span id="concept-tagline" class="text-xs font-semibold tracking-widest text-primary-500 uppercase block">
+                <!-- 動態載入 -->
+            </span>
+            <h1 id="concept-title" class="text-2xl sm:text-4xl font-light tracking-tight leading-relaxed">
+                <!-- 動態載入 -->
+            </h1>
+            <p id="concept-description" class="text-sm sm:text-base text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed font-light">
+                <!-- 動態載入 -->
+            </p>
+        </section>
+
+        <!-- 精選三張作品圖 (中間區域) -->
+        <section id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-3">
+            <!-- 這裡將透過 JS 動態產生作品卡片 -->
+        </section>
+    </main>
+
+    <!-- 頁尾 Minimal Footer -->
+    <footer class="w-full max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center py-4 border-t border-stone-200/40 dark:border-stone-800/40 gap-2">
+        <p class="text-[11px] text-stone-400 tracking-wider">
+            &copy; <span id="current-year"></span> <span id="footer-brand-name"></span>. ALL RIGHTS RESERVED.
+        </p>
+    </footer>
+
+    <!-- 相片放大燈箱 (Lightbox) -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-stone-950/95 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer" onclick="closeLightbox()">
+        <span class="absolute top-6 right-6 text-stone-300 hover:text-white text-4xl transition-colors duration-200">&times;</span>
+        <img id="lightbox-img" class="max-w-full max-h-[85vh] rounded-none shadow-2xl transition-transform duration-300 transform scale-95" src="" alt="放大圖片">
+    </div>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        // 頁面加載完成後，將 CONFIG 設定動態注入至 HTML 中
+        document.addEventListener('DOMContentLoaded', () => {
+            renderContent();
+            initTheme();
+            initContactDropdown();
+            initLightbox();
+        });
+
+        // 1. 動態渲染內容
+        function renderContent() {
+            // 設定標題與頁尾品牌
+            document.title = `${PORTFOLIO_CONFIG.brandName} | Portfolio`;
+            document.getElementById('header-brand-name').textContent = PORTFOLIO_CONFIG.brandName;
+            document.getElementById('footer-brand-name').textContent = PORTFOLIO_CONFIG.brandName;
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // 設定聯繫方式
+            const emailLink = document.getElementById('contact-email');
+            emailLink.href = `mailto:${PORTFOLIO_CONFIG.contact.email}`;
+            emailLink.textContent = PORTFOLIO_CONFIG.contact.email;
+
+            const phoneLink = document.getElementById('contact-phone');
+            phoneLink.href = `tel:${PORTFOLIO_CONFIG.contact.phone.replace(/[^0-9+]/g, '')}`;
+            phoneLink.textContent = PORTFOLIO_CONFIG.contact.phone;
+
+            // 設定設計理念
+            document.getElementById('concept-tagline').textContent = PORTFOLIO_CONFIG.concept.tagline;
+            document.getElementById('concept-title').textContent = PORTFOLIO_CONFIG.concept.title;
+            document.getElementById('concept-description').textContent = PORTFOLIO_CONFIG.concept.description;
+
+            // 渲染三張作品卡片
+            const grid = document.getElementById('portfolio-grid');
+            grid.innerHTML = ''; // 清空預設
+
+            PORTFOLIO_CONFIG.projects.forEach((proj, idx) => {
+                const cardHTML = `
+                    <div class="portfolio-card group bg-white dark:bg-stone-900 rounded-none overflow-hidden border border-stone-200/60 dark:border-stone-800/60 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+                        <div class="relative aspect-[3/2] overflow-hidden bg-stone-100 dark:bg-stone-800">
+                            <img src="${proj.image}" 
+                                 alt="${proj.title}" 
+                                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 cursor-zoom-in"
+                                 onerror="this.src='https://placehold.co/800x600/292524/ffffff?text=${encodeURIComponent(proj.fallbackText)}'">
+                            <div class="absolute inset-0 bg-stone-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                <span class="text-white text-xs font-light tracking-widest bg-stone-900/80 backdrop-blur-sm px-3 py-1.5 rounded-none">探索細節</span>
+                            </div>
+                        </div>
+                        <div class="p-3 flex justify-between items-center text-xs border-t border-stone-100 dark:border-stone-850 gap-2">
+                            <span class="uppercase font-bold tracking-widest text-stone-400 dark:text-stone-500 flex-shrink-0">${proj.id}</span>
+                            <h3 class="font-medium text-stone-700 dark:text-stone-300 truncate text-right" title="${proj.title}">${proj.title}</h3>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        // 2. 深淺色模式切換 (Dark/Light mode)
+        function initTheme() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                lightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                darkIcon.classList.remove('hidden');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                    lightIcon.classList.add('hidden');
+                    darkIcon.classList.remove('hidden');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                    darkIcon.classList.add('hidden');
+                    lightIcon.classList.remove('hidden');
+                }
+            });
+        }
+
+        // 3. 聯繫方式下拉選單
+        function initContactDropdown() {
+            const contactToggle = document.getElementById('contact-toggle');
+            const contactDropdown = document.getElementById('contact-dropdown');
+            const contactArrow = document.getElementById('contact-arrow');
+
+            function toggleDropdown(show) {
+                if (show) {
+                    contactDropdown.classList.remove('hidden');
+                    setTimeout(() => {
+                        contactDropdown.classList.remove('opacity-0', 'scale-95');
+                        contactDropdown.classList.add('opacity-100', 'scale-100');
+                        contactArrow.classList.add('rotate-180');
+                    }, 10);
+                } else {
+                    contactDropdown.classList.remove('opacity-100', 'scale-100');
+                    contactDropdown.classList.add('opacity-0', 'scale-95');
+                    contactArrow.classList.remove('rotate-180');
+                    setTimeout(() => {
+                        contactDropdown.classList.add('hidden');
+                    }, 300);
+                }
+            }
+
+            contactToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = contactDropdown.classList.contains('hidden');
+                toggleDropdown(isHidden);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!contactDropdown.classList.contains('hidden') && !contactDropdown.contains(e.target) && e.target !== contactToggle) {
+                    toggleDropdown(false);
+                }
+            });
+        }
+
+        // 4. 燈箱功能（點擊圖片放大）
+        let lightbox, lightboxImg;
+        
+        function initLightbox() {
+            lightbox = document.getElementById('lightbox');
+            lightboxImg = document.getElementById('lightbox-img');
+
+            // 必須在動態產生卡片後，重新綁定點擊事件
+            document.getElementById('portfolio-grid').addEventListener('click', (e) => {
+                const img = e.target.closest('.portfolio-card img');
+                if (img) {
+                    e.stopPropagation();
+                    lightboxImg.src = img.src;
+                    lightbox.classList.remove('hidden');
+                    setTimeout(() => {
+                        lightboxImg.classList.remove('scale-95');
+                        lightboxImg.classList.add('scale-100');
+                    }, 10);
+                    document.body.classList.add('overflow-hidden');
+                }
+            });
+        }
+
+        function closeLightbox() {
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+            }, 150);
+            document.body.classList.remove('overflow-hidden');
+        }
+    </script>
+</body>
+</html>
