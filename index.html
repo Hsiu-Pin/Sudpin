@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW" class="theme-transition">
+<html lang="zh-TW" class="theme-transition dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,8 +69,8 @@
             // 3. 頂部設計理念區
             concept: {
                 tagline: "DESIGN CONCEPT / 設計理念",
-                title: "「在繁複的世界中，探尋物件最純粹的本質與張力。」",
-                description: "我們深信，好的設計不需冗贅的裝飾。透過結構的重組、光影的留白與細緻的材質紋理，我們將概念具象化，在極簡的框限之中，釋放出最深遠的視覺故事與實用價值。"
+                title: "「將台灣的美麗文化，與光影結合。」",
+                description: "我們深信，好的設計不需冗贅的裝飾。"
             },
             
             // 4. 三張精選作品設定 (按順序由左至右)
@@ -136,12 +136,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 深色模式切換按鈕 -->
-            <button id="theme-toggle" class="p-2 rounded-full hover:bg-stone-200/50 dark:hover:bg-stone-800/50 text-stone-600 dark:text-stone-300 focus:outline-none transition-colors duration-350">
-                <i id="theme-toggle-dark-icon" class="hidden fas fa-moon text-lg"></i>
-                <i id="theme-toggle-light-icon" class="hidden fas fa-sun text-lg"></i>
-            </button>
         </div>
     </header>
 
@@ -185,7 +179,6 @@
         // 頁面加載完成後，將 CONFIG 設定動態注入至 HTML 中
         document.addEventListener('DOMContentLoaded', () => {
             renderContent();
-            initTheme();
             initContactDropdown();
             initLightbox();
         });
@@ -238,36 +231,7 @@
             });
         }
 
-        // 2. 深淺色模式切換 (Dark/Light mode)
-        function initTheme() {
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const darkIcon = document.getElementById('theme-toggle-dark-icon');
-            const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                lightIcon.classList.remove('hidden');
-            } else {
-                document.documentElement.classList.remove('dark');
-                darkIcon.classList.remove('hidden');
-            }
-
-            themeToggleBtn.addEventListener('click', () => {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                    lightIcon.classList.add('hidden');
-                    darkIcon.classList.remove('hidden');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                    darkIcon.classList.add('hidden');
-                    lightIcon.classList.remove('hidden');
-                }
-            });
-        }
-
-        // 3. 聯繫方式下拉選單
+        // 2. 聯繫方式下拉選單
         function initContactDropdown() {
             const contactToggle = document.getElementById('contact-toggle');
             const contactDropdown = document.getElementById('contact-dropdown');
@@ -304,7 +268,7 @@
             });
         }
 
-        // 4. 燈箱功能（點擊圖片放大）
+        // 3. 燈箱功能（點擊圖片放大）
         let lightbox, lightboxImg;
         
         function initLightbox() {
