@@ -69,28 +69,25 @@
             // 3. 頂部設計理念區
             concept: {
                 tagline: "DESIGN CONCEPT / 設計理念",
-                title: "「將台灣的美麗文化，與光影結合。」",
-                description: "我們深信，好的設計不需冗贅的裝飾。"
+                title: "「在繁複的世界中，探尋物件最純粹的本質與張力。」",
+                description: "我們深信，好的設計不需冗贅的裝飾。透過結構的重組、光影的留白與細緻的材質紋理，我們將概念具象化，在極簡的框限之中，釋放出最深遠的視覺故事與實用價值。"
             },
             
             // 4. 三張精選作品設定 (按順序由左至右)
             projects: [
                 {
-                    id: "PROJECT 01",
-                    title: "光影雕琢",
-                    image: "image/南崧01.jpg", // 對應您 GitHub 裡的 image/南崧01.jpg
+                    title: "幾何虛實・光影雕琢",
+                    image: "image/%E5%8D%97%E5%B5%AC01.jpg", // 對應您 GitHub 裡的 image/南崧01.jpg
                     fallbackText: "南崧 01" // 當圖片失效時顯示的替代字
                 },
                 {
-                    id: "PROJECT 02",
-                    title: "現代主義",
-                    image: "image/南崧02.jpg", // 對應您 GitHub 裡的 image/南崧02.jpg
+                    title: "現代主義・結構留白",
+                    image: "image/%E5%8D%97%E5%B5%AC02.jpg", // 對應您 GitHub 裡的 image/南崧02.jpg
                     fallbackText: "南崧 02"
                 },
                 {
-                    id: "PROJECT 03",
-                    title: "自然共生",
-                    image: "image/南崧03.jpg", // 對應您 GitHub 裡的 image/南崧03.jpg
+                    title: "侘寂美學・自然共生",
+                    image: "image/%E5%8D%97%E5%B5%AC03.jpg", // 對應您 GitHub 裡的 image/南崧03.jpg
                     fallbackText: "南崧 03"
                 }
             ]
@@ -221,9 +218,8 @@
                                 <span class="text-white text-xs font-light tracking-widest bg-stone-900/80 backdrop-blur-sm px-3 py-1.5 rounded-none">探索細節</span>
                             </div>
                         </div>
-                        <div class="p-3 flex justify-between items-center text-xs border-t border-stone-100 dark:border-stone-850 gap-2">
-                            <span class="uppercase font-bold tracking-widest text-stone-400 dark:text-stone-500 flex-shrink-0">${proj.id}</span>
-                            <h3 class="font-medium text-stone-700 dark:text-stone-300 truncate text-right" title="${proj.title}">${proj.title}</h3>
+                        <div class="p-2.5 text-center text-xs border-t border-stone-100 dark:border-stone-850">
+                            <h3 class="font-medium text-stone-700 dark:text-stone-300 truncate" title="${proj.title}">${proj.title}</h3>
                         </div>
                     </div>
                 `;
