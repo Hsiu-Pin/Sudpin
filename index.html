@@ -125,7 +125,8 @@
 
     <!-- 頂部導覽 Minimal Header -->
     <header class="w-full max-w-6xl mx-auto flex justify-between items-center py-4 relative z-40">
-        <a href="#" id="header-brand-name" class="text-xl font-bold tracking-widest bg-gradient-to-r from-stone-800 to-stone-500 dark:from-stone-100 dark:to-stone-400 bg-clip-text text-transparent">
+        <!-- 移除漸層效果，使用 tracking 拉開字距，字體調整為 font-medium 呈現高端簡約感 -->
+        <a href="#" id="header-brand-name" class="text-lg font-medium tracking-[0.2em] text-stone-900 dark:text-stone-100 transition-colors duration-300">
             <!-- 動態載入品牌名稱 -->
         </a>
         
@@ -198,8 +199,9 @@
 
     <!-- 頁尾 Minimal Footer -->
     <footer class="w-full max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center py-4 border-t border-stone-200/40 dark:border-stone-800/40 gap-2 relative z-10">
+        <!-- 頁尾品牌字樣也維持高雅的純色和拉寬字距 -->
         <p class="text-[11px] text-stone-400 tracking-wider">
-            &copy; <span id="current-year"></span> <span id="footer-brand-name"></span>. ALL RIGHTS RESERVED.
+            &copy; <span id="current-year"></span> <span id="footer-brand-name" class="tracking-widest font-medium"></span>. ALL RIGHTS RESERVED.
         </p>
     </footer>
 
