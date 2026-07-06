@@ -55,7 +55,11 @@
         }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800 dark:bg-stone-950 dark:text-stone-100 theme-transition font-sans antialiased min-h-screen flex flex-col justify-between p-4 sm:p-8">
+<!-- 
+  將桌面版 body 限制為固定的 100vh 且不允許溢出滾動 (overflow-hidden)，
+  手機版依然保有彈性滾動以免螢幕過小遮擋內容
+-->
+<body class="bg-stone-50 text-stone-800 dark:bg-stone-950 dark:text-stone-100 theme-transition font-sans antialiased min-h-screen md:h-screen md:overflow-hidden flex flex-col justify-between p-4 sm:p-8">
 
     <!-- ==========================================
          CONFIG 配置模組 (方便您在最上方直接替換內容)
@@ -142,29 +146,33 @@
     </header>
 
     <!-- 主體內容區 (一頁式設計，置中對齊) -->
-    <main class="w-full max-w-6xl mx-auto flex-grow flex flex-col justify-center gap-8 sm:gap-12 py-6">
+    <main class="w-full max-w-6xl mx-auto flex-grow flex flex-col justify-center gap-6 sm:gap-8 py-4 relative">
         
         <!-- 設計理念與介紹 -->
         <section class="max-w-3xl mx-auto text-center space-y-4">
             <span id="concept-tagline" class="text-xs font-semibold tracking-widest text-primary-500 uppercase block">
                 <!-- 動態載入 -->
             </span>
-            <h1 id="concept-title" class="text-2xl sm:text-4xl font-light tracking-tight leading-relaxed">
+            <h1 id="concept-title" class="text-xl sm:text-3xl font-light tracking-tight leading-relaxed">
                 <!-- 動態載入 -->
             </h1>
-            <p id="concept-description" class="text-sm sm:text-base text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed font-light">
+            <p id="concept-description" class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed font-light">
                 <!-- 動態載入 -->
             </p>
         </section>
 
-        <!-- 精選三張作品圖 (中間區域) - 加上 items-start 避免未點擊卡片同步被拉長 -->
-        <section id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-3 items-start">
+        <!-- 
+          精選三張作品圖 (中間區域)
+          - 限制桌面版 Grid 容器的最大高度，並允許內容溢出 (overflow-visible)
+          - 配合 items-start 屬性，確保卡片向上對齊且只有點擊的卡片單獨向下懸浮展開
+        -->
+        <section id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-3 items-start md:h-[340px] md:max-h-[340px] relative overflow-visible">
             <!-- 這裡將透過 JS 動態產生作品卡片 -->
         </section>
     </main>
 
     <!-- 頁尾 Minimal Footer -->
-    <footer class="w-full max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center py-4 border-t border-stone-200/40 dark:border-stone-800/40 gap-2">
+    <footer class="w-full max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center py-4 border-t border-stone-200/40 dark:border-stone-800/40 gap-2 relative z-10">
         <p class="text-[11px] text-stone-400 tracking-wider">
             &copy; <span id="current-year"></span> <span id="footer-brand-name"></span>. ALL RIGHTS RESERVED.
         </p>
@@ -201,13 +209,13 @@
             document.getElementById('concept-title').textContent = PORTFOLIO_CONFIG.concept.title;
             document.getElementById('concept-description').textContent = PORTFOLIO_CONFIG.concept.description;
 
-            // 渲染三張作品卡片 - 移除 transition-all 改套用自訂的特定動畫 class
+            // 渲染三張作品卡片
             const grid = document.getElementById('portfolio-grid');
             grid.innerHTML = ''; // 清空預設
 
             PORTFOLIO_CONFIG.projects.forEach((proj, idx) => {
                 const cardHTML = `
-                    <div class="portfolio-card group bg-white dark:bg-stone-900 rounded-none overflow-hidden border border-stone-200/60 dark:border-stone-800/60 shadow-sm hover:shadow-xl cursor-pointer">
+                    <div class="portfolio-card group bg-white dark:bg-stone-900 rounded-none overflow-hidden border border-stone-200/60 dark:border-stone-800/60 shadow-sm transition-all duration-500 cursor-pointer relative z-10">
                         <div class="img-wrapper relative overflow-hidden bg-stone-100 dark:bg-stone-800 h-[300px] sm:h-[340px]">
                             <img src="${proj.image}" 
                                  alt="${proj.title}" 
@@ -287,8 +295,12 @@
                 if (isExpanded) {
                     collapseCard(card);
                 } else {
-                    // --- 展開邏輯 ---
+                    // --- 展開邏輯 (向上提升層級，懸浮展開) ---
                     card.classList.add('expanded');
+                    
+                    // 提升點擊卡片的 z-index 與陰影，使其懸浮於頁尾之上而不擠壓排版
+                    card.classList.remove('z-10');
+                    card.classList.add('z-30', 'shadow-2xl', 'scale-[1.01]');
                     
                     // 1. 取得目前外框的實際像素高度，並寫入 inline style 作為過渡起點
                     const startHeight = wrapper.offsetHeight;
@@ -306,8 +318,12 @@
                     const imgNaturalHeight = img.naturalHeight || 600;
                     const aspectRatio = imgNaturalWidth / imgNaturalHeight;
                     
-                    // 目標高度 = 寬度除以高寬比
-                    const targetHeight = rect.width / aspectRatio;
+                    // 目標高度 = 寬度除以高寬比 (限制最大高度避免在特大螢幕溢出視窗)
+                    let targetHeight = rect.width / aspectRatio;
+                    const maxViewportHeight = window.innerHeight * 0.55; // 限制展開後最多佔用 55% 視窗高度
+                    if (targetHeight > maxViewportHeight) {
+                        targetHeight = maxViewportHeight;
+                    }
 
                     // 5. 將目標高度賦予外框，觸發 CSS Height 動畫
                     wrapper.style.height = `${targetHeight}px`;
@@ -322,6 +338,8 @@
         // --- 收合邏輯 ---
         function collapseCard(card) {
             card.classList.remove('expanded');
+            card.classList.remove('scale-[1.01]');
+            
             const wrapper = card.querySelector('.img-wrapper');
             const actionBtn = card.querySelector('.img-wrapper span');
 
@@ -335,12 +353,14 @@
                 actionBtn.textContent = '展開完整細節';
             }
 
-            // 動態完結後，清除 inline 樣式以利於響應式 RWD 的縮放正常
+            // 動態收合完結後，再清空 inline 樣式並降回 z-10，防止收合過程中被其他卡片遮擋
             setTimeout(() => {
                 if (!card.classList.contains('expanded')) {
                     wrapper.style.height = '';
+                    card.classList.remove('z-30', 'shadow-2xl');
+                    card.classList.add('z-10');
                 }
-            }, 800); // 對應 0.8s 的動畫持續時間
+            }, 800); // 對應 0.8s 的高度動畫持續時間
         }
     </script>
 </body>
