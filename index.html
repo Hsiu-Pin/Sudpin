@@ -53,6 +53,19 @@
             transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: height;
         }
+        /* 圖片過渡與變形設定 */
+        .portfolio-card img {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        /* 滑鼠懸停時微幅放大 (未展開狀態) */
+        .portfolio-card:hover:not(.expanded) img {
+            transform: scale(1.02);
+        }
+        /* 點擊展開時，外框拉伸，內部圖片跟著順滑縮放放大 30% (+30%) */
+        .portfolio-card.expanded img {
+            transform: scale(1.30);
+        }
     </style>
 </head>
 <!-- 
@@ -75,7 +88,14 @@
                 phone: "+886 2-1234-5678"
             },
             
-            // 3. 頂部設計理念區
+            // 3. 關於南崧 (介紹內容配置)
+            about: {
+                title: "關於南崧文創 / ABOUT US",
+                subtitle: "「以設計為載體，傳遞文化的厚度與空間的張力。」",
+                content: "南崧文創成立於台北，致力於提供高端品牌規劃、空間美學設計與視覺藝術整合服務。\n\n我們編織當代語彙與傳統匠藝，在結構、光影與材質之間尋求完美平衡。每一項作品都是一場對極簡美學的探索，力求為觀者帶來最深邃的視覺故事與無可取代的品牌價值。"
+            },
+
+            // 3.5 設計理念 (首頁主標題與段落)
             concept: {
                 tagline: "DESIGN CONCEPT / 設計理念",
                 title: "「在繁複的世界中，探尋物件最純粹的本質與張力。」",
@@ -110,6 +130,11 @@
         </a>
         
         <div class="flex items-center space-x-3 sm:space-x-6 relative">
+            <!-- 關於南崧按鈕 -->
+            <button id="about-toggle" class="text-sm font-medium tracking-wider text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition duration-300 py-2 px-3 rounded-none hover:bg-stone-200/30 dark:hover:bg-stone-800/30">
+                <span>關於南崧</span>
+            </button>
+
             <!-- 聯繫方式按鈕與下拉選單 -->
             <div class="relative">
                 <button id="contact-toggle" class="text-sm font-medium tracking-wider text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition duration-300 flex items-center gap-1.5 focus:outline-none py-2 px-3 rounded-lg hover:bg-stone-200/30 dark:hover:bg-stone-800/30">
@@ -178,6 +203,25 @@
         </p>
     </footer>
 
+    <!-- 關於南崧 彈出介紹視窗 (Modal) -->
+    <div id="about-modal" class="fixed inset-0 z-50 hidden bg-stone-950/85 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 cursor-pointer">
+        <div id="about-modal-content" class="bg-white dark:bg-stone-900/95 border border-stone-200/80 dark:border-stone-800 rounded-none max-w-lg w-full p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 cursor-default">
+            <!-- 關閉按鈕 -->
+            <button id="about-modal-close" class="absolute top-4 right-4 text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 text-xl transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="space-y-4 text-left">
+                <span class="text-xs font-bold tracking-widest text-stone-400 dark:text-stone-500 uppercase">ABOUT COMPANY</span>
+                <h2 id="about-modal-title" class="text-xl sm:text-2xl font-bold tracking-wide text-stone-800 dark:text-stone-100"><!-- 動態載入 --></h2>
+                <div class="border-t border-stone-200/50 dark:border-stone-800/80 my-2"></div>
+                <p id="about-modal-subtitle" class="text-xs text-primary-500 font-bold leading-relaxed"><!-- 動態載入 --></p>
+                <p id="about-modal-desc" class="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed font-light whitespace-pre-line">
+                    <!-- 動態載入 -->
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript 邏輯 -->
     <script>
         // 頁面加載完成後，將 CONFIG 設定動態注入至 HTML 中
@@ -185,6 +229,7 @@
             renderContent();
             initContactDropdown();
             initExpandFeature();
+            initAboutModal();
         });
 
         // 1. 動態渲染內容
@@ -209,6 +254,11 @@
             document.getElementById('concept-title').textContent = PORTFOLIO_CONFIG.concept.title;
             document.getElementById('concept-description').textContent = PORTFOLIO_CONFIG.concept.description;
 
+            // 設定關於我們內容
+            document.getElementById('about-modal-title').textContent = PORTFOLIO_CONFIG.about.title;
+            document.getElementById('about-modal-subtitle').textContent = PORTFOLIO_CONFIG.about.subtitle;
+            document.getElementById('about-modal-desc').textContent = PORTFOLIO_CONFIG.about.content;
+
             // 渲染三張作品卡片
             const grid = document.getElementById('portfolio-grid');
             grid.innerHTML = ''; // 清空預設
@@ -219,7 +269,7 @@
                         <div class="img-wrapper relative overflow-hidden bg-stone-100 dark:bg-stone-800 h-[300px] sm:h-[340px]">
                             <img src="${proj.image}" 
                                  alt="${proj.title}" 
-                                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+                                 class="w-full h-full object-cover"
                                  onerror="this.src='https://placehold.co/800x600/292524/ffffff?text=${encodeURIComponent(proj.fallbackText)}'">
                             <div class="absolute inset-0 bg-stone-950/20 opacity-100 group-hover:bg-stone-950/10 transition-colors duration-300 flex items-end p-4 pointer-events-none">
                                 <span class="text-white text-[10px] font-light tracking-widest bg-stone-900/80 backdrop-blur-sm px-3 py-1.5 rounded-none uppercase transition-all duration-300 pointer-events-auto shadow-md">展開完整細節</span>
@@ -361,6 +411,44 @@
                     card.classList.add('z-10');
                 }
             }, 800); // 對應 0.8s 的高度動畫持續時間
+        }
+
+        // 4. 關於南崧視窗互動
+        function initAboutModal() {
+            const aboutToggle = document.getElementById('about-toggle');
+            const aboutModal = document.getElementById('about-modal');
+            const aboutModalContent = document.getElementById('about-modal-content');
+            const aboutModalClose = document.getElementById('about-modal-close');
+
+            function toggleModal(show) {
+                if (show) {
+                    aboutModal.classList.remove('hidden');
+                    // 強制重繪以驅動過渡動畫
+                    aboutModal.offsetHeight;
+                    aboutModal.classList.remove('opacity-0');
+                    aboutModal.classList.add('opacity-100');
+                    aboutModalContent.classList.remove('scale-95');
+                    aboutModalContent.classList.add('scale-100');
+                    document.body.classList.add('overflow-hidden');
+                } else {
+                    aboutModal.classList.remove('opacity-100');
+                    aboutModal.classList.add('opacity-0');
+                    aboutModalContent.classList.remove('scale-100');
+                    aboutModalContent.classList.add('scale-95');
+                    document.body.classList.remove('overflow-hidden');
+                    setTimeout(() => {
+                        aboutModal.classList.add('hidden');
+                    }, 300);
+                }
+            }
+
+            aboutToggle.addEventListener('click', () => toggleModal(true));
+            aboutModalClose.addEventListener('click', () => toggleModal(false));
+            aboutModal.addEventListener('click', (e) => {
+                if (e.target === aboutModal) {
+                    toggleModal(false);
+                }
+            });
         }
     </script>
 </body>
