@@ -68,55 +68,42 @@
         }
     </style>
 </head>
-<!-- 
-  將桌面版 body 限制為固定的 100vh 且不允許溢出滾動 (overflow-hidden)，
-  手機版依然保有彈性滾動以免螢幕過小遮擋內容
--->
 <body class="bg-stone-50 text-stone-800 dark:bg-stone-950 dark:text-stone-100 theme-transition font-sans antialiased min-h-screen md:h-screen md:overflow-hidden flex flex-col justify-between p-4 sm:p-8">
 
     <!-- ==========================================
-         CONFIG 配置模組 (方便您在最上方直接替換內容)
+         CONFIG 配置模組
          ========================================== -->
     <script>
         const PORTFOLIO_CONFIG = {
-            // 1. 品牌與基本設定
             brandName: "南崧文創",
-            
-            // 2. 聯繫方式 (下拉選單內容)
             contact: {
                 email: "service@nansong.com.tw",
                 phone: "+886 2-1234-5678"
             },
-            
-            // 3. 關於南崧 (介紹內容配置)
             about: {
                 title: "關於南崧文創 / ABOUT US",
                 subtitle: "「以設計為載體，傳遞文化的厚度與空間的張力。」",
                 content: "南崧文創成立於台北，致力於提供高端品牌規劃、空間美學設計與視覺藝術整合服務。\n\n我們編織當代語彙與傳統匠藝，在結構、光影與材質之間尋求完美平衡。每一項作品都是一場對極簡美學的探索，力求為觀者帶來最深邃的視覺故事與無可取代的品牌價值。"
             },
-
-            // 3.5 設計理念 (首頁主標題與段落)
             concept: {
                 tagline: "DESIGN CONCEPT / 設計理念",
                 title: "「在繁複的世界中，探尋物件最純粹的本質與張力。」",
                 description: "我們深信，好的設計不需冗贅的裝飾。透過結構的重組、光影的留白與細緻的材質紋理，我們將概念具象化，在極簡的框限之中，釋放出最深遠的視覺故事與實用價值。"
             },
-            
-            // 4. 三張精選作品設定 (按順序由左至右)
             projects: [
                 {
                     title: "幾何虛實・光影雕琢",
-                    image: "image/南崧01.jpg", // 對應您 GitHub 裡的 image/南崧01.jpg
-                    fallbackText: "南崧 01" // 當圖片失效時顯示的替代字
+                    image: "image/南崧01.jpg",
+                    fallbackText: "南崧 01"
                 },
                 {
                     title: "現代主義・結構留白",
-                    image: "image/南崧02.jpg", // 對應您 GitHub 裡的 image/南崧02.jpg
+                    image: "image/南崧02.jpg",
                     fallbackText: "南崧 02"
                 },
                 {
                     title: "侘寂美學・自然共生",
-                    image: "image/南崧03.jpg", // 對應您 GitHub 裡的 image/南崧03.jpg
+                    image: "image/南崧03.jpg",
                     fallbackText: "南崧 03"
                 }
             ]
@@ -125,25 +112,20 @@
 
     <!-- 頂部導覽 Minimal Header -->
     <header class="w-full max-w-6xl mx-auto flex justify-between items-center py-4 relative z-40">
-        <!-- 移除漸層效果，使用 tracking 拉開字距，字體調整為 font-medium 呈現高端簡約感 -->
         <a href="#" id="header-brand-name" class="text-lg font-medium tracking-[0.2em] text-stone-900 dark:text-stone-100 transition-colors duration-300">
-            <!-- 動態載入品牌名稱 -->
         </a>
         
         <div class="flex items-center space-x-3 sm:space-x-6 relative">
-            <!-- 關於南崧按鈕 -->
             <button id="about-toggle" class="text-sm font-medium tracking-wider text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition duration-300 py-2 px-3 rounded-none hover:bg-stone-200/30 dark:hover:bg-stone-800/30">
                 <span>關於南崧</span>
             </button>
 
-            <!-- 聯繫方式按鈕與下拉選單 -->
             <div class="relative">
                 <button id="contact-toggle" class="text-sm font-medium tracking-wider text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition duration-300 flex items-center gap-1.5 focus:outline-none py-2 px-3 rounded-lg hover:bg-stone-200/30 dark:hover:bg-stone-800/30">
                     <span>聯繫方式</span>
                     <i id="contact-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
                 </button>
                 
-                <!-- 下拉選單選卡 -->
                 <div id="contact-dropdown" class="hidden absolute right-0 mt-2 w-64 bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-stone-200/80 dark:border-stone-800/85 rounded-xl p-4 shadow-xl z-50 transition-all duration-300 opacity-0 transform scale-95 origin-top-right">
                     <div class="space-y-3">
                         <div class="flex items-start gap-3">
@@ -152,7 +134,7 @@
                             </div>
                             <div>
                                 <p class="text-[10px] text-stone-400 dark:text-stone-500 font-bold tracking-widest uppercase">Email</p>
-                                <a id="contact-email" href="" class="text-xs font-medium hover:text-primary-500 dark:hover:text-primary-400 transition-colors break-all"><!-- 動態載入 --></a>
+                                <a id="contact-email" href="" class="text-xs font-medium hover:text-primary-500 dark:hover:text-primary-400 transition-colors break-all"></a>
                             </div>
                         </div>
                         <div class="border-t border-stone-200/40 dark:border-stone-800/50 my-1"></div>
@@ -162,7 +144,7 @@
                             </div>
                             <div>
                                 <p class="text-[10px] text-stone-400 dark:text-stone-500 font-bold tracking-widest uppercase">Phone</p>
-                                <a id="contact-phone" href="" class="text-xs font-medium hover:text-primary-500 dark:hover:text-primary-400 transition-colors"><!-- 動態載入 --></a>
+                                <a id="contact-phone" href="" class="text-xs font-medium hover:text-primary-500 dark:hover:text-primary-400 transition-colors"></a>
                             </div>
                         </div>
                     </div>
@@ -171,35 +153,21 @@
         </div>
     </header>
 
-    <!-- 主體內容區 (一頁式設計，置中對齊) -->
-    <main class="w-full max-w-6xl mx-auto flex-grow flex flex-col justify-center gap-6 sm:gap-8 py-16 md:py-24 relative">
+    <!-- 主體內容區 -->
+    <main class="w-full max-w-6xl mx-auto flex-grow flex flex-col justify-center gap-12 sm:gap-16 py-24 md:py-32 relative">
         
-        <!-- 設計理念與介紹 -->
         <section class="max-w-3xl mx-auto text-center space-y-4">
-            <span id="concept-tagline" class="text-xs font-semibold tracking-widest text-primary-500 uppercase block">
-                <!-- 動態載入 -->
-            </span>
-            <h1 id="concept-title" class="text-xl sm:text-3xl font-light tracking-tight leading-relaxed">
-                <!-- 動態載入 -->
-            </h1>
-            <p id="concept-description" class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed font-light">
-                <!-- 動態載入 -->
-            </p>
+            <span id="concept-tagline" class="text-xs font-semibold tracking-widest text-primary-500 uppercase block"></span>
+            <h1 id="concept-title" class="text-xl sm:text-3xl font-light tracking-tight leading-relaxed"></h1>
+            <p id="concept-description" class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed font-light"></p>
         </section>
 
-        <!-- 
-          精選三張作品圖 (中間區域)
-          - 限制桌面版 Grid 容器的最大高度，並允許內容溢出 (overflow-visible)
-          - 配合 items-start 屬性，確保卡片向上對齊且只有點擊的卡片單獨向下懸浮展開
-        -->
-        <section id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-3 items-start md:h-[340px] md:max-h-[340px] relative overflow-visible">
-            <!-- 這裡將透過 JS 動態產生作品卡片 -->
+        <section id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4 items-start md:h-[340px] md:max-h-[340px] relative overflow-visible">
         </section>
     </main>
 
     <!-- 頁尾 Minimal Footer -->
     <footer class="w-full max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center py-8 border-t border-stone-200/40 dark:border-stone-800/40 gap-2 relative z-10">
-        <!-- 頁尾品牌字樣也維持高雅的純色和拉寬字距 -->
         <p class="text-[11px] text-stone-400 tracking-wider">
             &copy; <span id="current-year"></span> <span id="footer-brand-name" class="tracking-widest font-medium"></span>
         </p>
@@ -208,25 +176,21 @@
     <!-- 關於南崧 彈出介紹視窗 (Modal) -->
     <div id="about-modal" class="fixed inset-0 z-50 hidden bg-stone-950/85 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 cursor-pointer">
         <div id="about-modal-content" class="bg-white dark:bg-stone-900/95 border border-stone-200/80 dark:border-stone-800 rounded-none max-w-lg w-full p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 cursor-default">
-            <!-- 關閉按鈕 -->
             <button id="about-modal-close" class="absolute top-4 right-4 text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 text-xl transition-colors">
                 <i class="fas fa-times"></i>
             </button>
             <div class="space-y-4 text-left">
                 <span class="text-xs font-bold tracking-widest text-stone-400 dark:text-stone-500 uppercase">ABOUT COMPANY</span>
-                <h2 id="about-modal-title" class="text-xl sm:text-2xl font-bold tracking-wide text-stone-800 dark:text-stone-100"><!-- 動態載入 --></h2>
+                <h2 id="about-modal-title" class="text-xl sm:text-2xl font-bold tracking-wide text-stone-800 dark:text-stone-100"></h2>
                 <div class="border-t border-stone-200/50 dark:border-stone-800/80 my-2"></div>
-                <p id="about-modal-subtitle" class="text-xs text-primary-500 font-bold leading-relaxed"><!-- 動態載入 --></p>
-                <p id="about-modal-desc" class="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed font-light whitespace-pre-line">
-                    <!-- 動態載入 -->
-                </p>
+                <p id="about-modal-subtitle" class="text-xs text-primary-500 font-bold leading-relaxed"></p>
+                <p id="about-modal-desc" class="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed font-light whitespace-pre-line"></p>
             </div>
         </div>
     </div>
 
     <!-- JavaScript 邏輯 -->
     <script>
-        // 頁面加載完成後，將 CONFIG 設定動態注入至 HTML 中
         document.addEventListener('DOMContentLoaded', () => {
             renderContent();
             initContactDropdown();
@@ -234,15 +198,12 @@
             initAboutModal();
         });
 
-        // 1. 動態渲染內容
         function renderContent() {
-            // 設定標題與頁尾品牌
             document.title = `${PORTFOLIO_CONFIG.brandName} | Portfolio`;
             document.getElementById('header-brand-name').textContent = PORTFOLIO_CONFIG.brandName;
             document.getElementById('footer-brand-name').textContent = PORTFOLIO_CONFIG.brandName;
             document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // 設定聯繫方式
             const emailLink = document.getElementById('contact-email');
             emailLink.href = `mailto:${PORTFOLIO_CONFIG.contact.email}`;
             emailLink.textContent = PORTFOLIO_CONFIG.contact.email;
@@ -251,19 +212,16 @@
             phoneLink.href = `tel:${PORTFOLIO_CONFIG.contact.phone.replace(/[^0-9+]/g, '')}`;
             phoneLink.textContent = PORTFOLIO_CONFIG.contact.phone;
 
-            // 設定設計理念
             document.getElementById('concept-tagline').textContent = PORTFOLIO_CONFIG.concept.tagline;
             document.getElementById('concept-title').textContent = PORTFOLIO_CONFIG.concept.title;
             document.getElementById('concept-description').textContent = PORTFOLIO_CONFIG.concept.description;
 
-            // 設定關於我們內容
             document.getElementById('about-modal-title').textContent = PORTFOLIO_CONFIG.about.title;
             document.getElementById('about-modal-subtitle').textContent = PORTFOLIO_CONFIG.about.subtitle;
             document.getElementById('about-modal-desc').textContent = PORTFOLIO_CONFIG.about.content;
 
-            // 渲染三張作品卡片
             const grid = document.getElementById('portfolio-grid');
-            grid.innerHTML = ''; // 清空預設
+            grid.innerHTML = ''; 
 
             PORTFOLIO_CONFIG.projects.forEach((proj, idx) => {
                 const cardHTML = `
@@ -273,9 +231,6 @@
                                  alt="${proj.title}" 
                                  class="w-full h-full object-cover"
                                  onerror="this.src='https://placehold.co/800x600/292524/ffffff?text=${encodeURIComponent(proj.fallbackText)}'">
-                            <div class="absolute inset-0 bg-stone-950/20 opacity-100 group-hover:bg-stone-950/10 transition-colors duration-300 flex items-end p-4 pointer-events-none">
-                                <span class="text-white text-[10px] font-light tracking-widest bg-stone-900/80 backdrop-blur-sm px-3 py-1.5 rounded-none uppercase transition-all duration-300 pointer-events-auto shadow-md">展開完整細節</span>
-                            </div>
                         </div>
                         <div class="p-2.5 text-center text-xs border-t border-stone-100 dark:border-stone-850">
                             <h3 class="font-medium text-stone-700 dark:text-stone-300 truncate" title="${proj.title}">${proj.title}</h3>
@@ -286,7 +241,6 @@
             });
         }
 
-        // 2. 聯繫方式下拉選單
         function initContactDropdown() {
             const contactToggle = document.getElementById('contact-toggle');
             const contactDropdown = document.getElementById('contact-dropdown');
@@ -323,7 +277,6 @@
             });
         }
 
-        // 3. 圖片外框原位同步延伸展開功能
         function initExpandFeature() {
             const grid = document.getElementById('portfolio-grid');
             
@@ -333,11 +286,8 @@
 
                 const wrapper = card.querySelector('.img-wrapper');
                 const img = card.querySelector('img');
-                const actionBtn = card.querySelector('.img-wrapper span');
-
                 const isExpanded = card.classList.contains('expanded');
 
-                // 先收合其他已展開的作品
                 document.querySelectorAll('.portfolio-card').forEach(otherCard => {
                     if (otherCard !== card && otherCard.classList.contains('expanded')) {
                         collapseCard(otherCard);
@@ -347,75 +297,49 @@
                 if (isExpanded) {
                     collapseCard(card);
                 } else {
-                    // --- 展開邏輯 (向上提升層級，懸浮展開) ---
                     card.classList.add('expanded');
-                    
-                    // 提升點擊卡片的 z-index 與陰影，使其懸浮於頁尾之上而不擠壓排版
                     card.classList.remove('z-10');
                     card.classList.add('z-30', 'shadow-2xl', 'scale-[1.01]');
                     
-                    // 1. 取得目前外框的實際像素高度，並寫入 inline style 作為過渡起點
                     const startHeight = wrapper.offsetHeight;
                     wrapper.style.height = `${startHeight}px`;
-                    
-                    // 2. 紀錄初始高度以便後續收縮還原
                     wrapper.dataset.originalHeight = startHeight;
-                    
-                    // 3. 強制瀏覽器重繪 (Reflow) 確保 transition 生效
                     wrapper.offsetHeight; 
 
-                    // 4. 計算圖片展開後的完美目標高度 ( 容器寬度 / 圖片寬高比 )
                     const rect = wrapper.getBoundingClientRect();
                     const imgNaturalWidth = img.naturalWidth || 800;
                     const imgNaturalHeight = img.naturalHeight || 600;
                     const aspectRatio = imgNaturalWidth / imgNaturalHeight;
                     
-                    // 目標高度 = 寬度除以高寬比 (限制最大高度避免在特大螢幕溢出視窗)
                     let targetHeight = rect.width / aspectRatio;
-                    const maxViewportHeight = window.innerHeight * 0.55; // 限制展開後最多佔用 55% 視窗高度
+                    const maxViewportHeight = window.innerHeight * 0.55; 
                     if (targetHeight > maxViewportHeight) {
                         targetHeight = maxViewportHeight;
                     }
 
-                    // 5. 將目標高度賦予外框，觸發 CSS Height 動畫
                     wrapper.style.height = `${targetHeight}px`;
-
-                    if (actionBtn) {
-                        actionBtn.textContent = '收合作品';
-                    }
                 }
             });
         }
 
-        // --- 收合邏輯 ---
         function collapseCard(card) {
             card.classList.remove('expanded');
             card.classList.remove('scale-[1.01]');
             
             const wrapper = card.querySelector('.img-wrapper');
-            const actionBtn = card.querySelector('.img-wrapper span');
-
-            // 取得當初記錄的原始高度 (例如 340px)
             const originalHeight = wrapper.dataset.originalHeight || (window.innerWidth < 640 ? 300 : 340);
             
-            // 觸發 CSS Height 收縮動畫
             wrapper.style.height = `${originalHeight}px`;
-            
-            if (actionBtn) {
-                actionBtn.textContent = '展開完整細節';
-            }
 
-            // 動態收合完結後，再清空 inline 樣式並降回 z-10，防止收合過程中被其他卡片遮擋
             setTimeout(() => {
                 if (!card.classList.contains('expanded')) {
                     wrapper.style.height = '';
                     card.classList.remove('z-30', 'shadow-2xl');
                     card.classList.add('z-10');
                 }
-            }, 800); // 對應 0.8s 的高度動畫持續時間
+            }, 800);
         }
 
-        // 4. 關於南崧視窗互動
         function initAboutModal() {
             const aboutToggle = document.getElementById('about-toggle');
             const aboutModal = document.getElementById('about-modal');
@@ -425,7 +349,6 @@
             function toggleModal(show) {
                 if (show) {
                     aboutModal.classList.remove('hidden');
-                    // 強制重繪以驅動過渡動畫
                     aboutModal.offsetHeight;
                     aboutModal.classList.remove('opacity-0');
                     aboutModal.classList.add('opacity-100');
