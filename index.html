@@ -6,7 +6,6 @@
     <title>南崧文創 | Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tailwind 配置自訂樣式 -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -14,16 +13,9 @@
                 extend: {
                     colors: {
                         primary: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            200: '#ddd6fe',
-                            300: '#c4b5fd',
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            800: '#5b21b6',
-                            900: '#4c1d95',
+                            50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 300: '#c4b5fd',
+                            400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9',
+                            800: '#5b21b6', 900: '#4c1d95',
                         }
                     },
                     fontFamily: {
@@ -33,84 +25,45 @@
             }
         }
     </script>
-    <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .theme-transition {
-            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease, color 0.4s ease;
-        }
-        body {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        body::-webkit-scrollbar {
-            display: none;
-        }
-        .img-wrapper {
-            transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: height;
-        }
-        .portfolio-card img {
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
-        }
-        .portfolio-card:hover:not(.expanded) img {
-            transform: scale(1.02);
-        }
-        .portfolio-card.expanded img {
-            transform: scale(1.30);
-        }
+        .theme-transition { transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease, color 0.4s ease; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+        body::-webkit-scrollbar { display: none; }
+        .img-wrapper { transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1); will-change: height; }
+        .portfolio-card img { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+        .portfolio-card:hover:not(.expanded) img { transform: scale(1.02); }
+        .portfolio-card.expanded img { transform: scale(1.30); }
     </style>
 </head>
 <body class="bg-stone-50 text-stone-800 dark:bg-stone-950 dark:text-stone-100 theme-transition font-sans antialiased min-h-screen md:h-screen md:overflow-hidden flex flex-col justify-between p-4 sm:p-8">
 
-    <!-- CONFIG 配置模組 -->
     <script>
         const PORTFOLIO_CONFIG = {
             brandName: "南崧文創",
             contact: {
-                email: "service@nansong.com.tw",
-                phone: "+886 2-1234-5678"
+                email: "sudpin19849@gmail.com",
+                phone: "0918-069-961"
             },
             about: {
                 title: "關於南崧文創 / ABOUT US",
                 subtitle: "「以設計為載體，傳遞文化的厚度與美學的張力。」",
-                content: "\
-我們相信，文化不應只存在於博物館，而應走進每一天的生活。\
-我們以台灣的建築、美學與地方故事為靈感，透過設計，重新詮釋傳統文化，期望將花磚、城市風景與歷史記憶，\
-化作兼具實用與收藏價值的生活物件。\
-每一件作品，都希望成為一段文化的載體，讓光影、工藝與故事，在日常中靜靜延續。"
+                content: "我們相信，文化不應只存在於博物館，而應走進每一天的生活。\n我們以台灣的建築、美學與地方故事為靈感，透過設計，重新詮釋傳統文化，期望將花磚、城市風景與歷史記憶，化作兼具實用與收藏價值的生活物件。\n每一件作品，都希望成為一段文化的載體，讓光影、工藝與故事，在日常中靜靜延續。"
             },
             concept: {
                 tagline: "台灣花磚光影書籤 / 設計理念",
                 title: "「將台灣花磚美學，化作光影之間」",
-                description: "\
-源自二十世紀初的台灣花磚，曾妝點無數老宅與街屋，象徵著祝福、富足與美好的生活。\n\
-我們將這份跨越百年的工藝美學，以透光材質重新演繹，讓花磚在光線下投射出細緻的色彩與光影，成為日常中一件值得細細欣賞的小作品。\n\
-可做書籤夾入書頁，亦可為冰箱貼點綴家庭角落。"
+                description: "源自二十世紀初的台灣花磚，曾妝點無數老宅與街屋，象徵著祝福、富足與美好的生活。\n我們將這份跨越百年的工藝美學，以透光材質重新演繹，讓花磚在光線下投射出細緻的色彩與光影，成為日常中一件值得細細欣賞的小作品。\n可做書籤夾入書頁，亦可為冰箱貼點綴家庭角落。"
             },
             projects: [
-                {
-                    title: "",
-                    image: "image/南崧01.jpg",
-                    fallbackText: "南崧 01"
-                },
-                {
-                    title: "",
-                    image: "image/南崧02.jpg",
-                    fallbackText: "南崧 02"
-                },
-                {
-                    title: "",
-                    image: "image/南崧03.jpg",
-                    fallbackText: "南崧 03"
-                }
+                { title: "", image: "image/南崧01.jpg", fallbackText: "南崧 01" },
+                { title: "", image: "image/南崧02.jpg", fallbackText: "南崧 02" },
+                { title: "", image: "image/南崧03.jpg", fallbackText: "南崧 03" }
             ]
         };
     </script>
 
-    <!-- 頂部導覽 -->
     <header class="w-full max-w-6xl mx-auto flex justify-between items-center py-4 relative z-40">
         <a href="#" id="header-brand-name" class="text-lg font-medium tracking-[0.2em] text-stone-900 dark:text-stone-100 transition-colors duration-300"></a>
         
@@ -119,26 +72,16 @@
                 <span>關於南崧</span>
             </button>
             
-            <!-- 其他產品下拉選單 -->
             <div class="relative">
                 <button id="products-toggle" class="text-sm font-medium tracking-wider text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition duration-300 flex items-center gap-1.5 focus:outline-none py-2 px-3 rounded-lg hover:bg-stone-200/30 dark:hover:bg-stone-800/30">
                     <span>其他產品</span>
                     <i id="products-arrow" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
                 </button>
-                <div id="products-dropdown" class="hidden absolute right-0 mt-2 w-64 bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-stone-200/80 dark:border-stone-800/85 rounded-xl p-4 shadow-xl z-50 transition-all duration-300 opacity-0 transform scale-95 origin-top-right">
-                    <div class="space-y-3">
-                        <div class="flex items-start gap-3">
-                            <div class="text-stone-400 dark:text-stone-500 mt-0.5"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <p class="text-[10px] text-stone-400 dark:text-stone-500 font-bold tracking-widest uppercase">Email</p>
-                                <a id="敬請期待" href="" class="text-xs font-medium hover:text-primary-500 dark:hover:text-primary-400 transition-colors break-all"></a>
-                            </div>
-                        </div>
-                    </div>
+                <div id="products-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-stone-200/80 dark:border-stone-800/85 rounded-xl p-4 shadow-xl z-50 transition-all duration-300 opacity-0 transform scale-95 origin-top-right">
+                    <p id="products-message" class="text-xs text-center text-stone-500 dark:text-stone-400 tracking-widest font-medium">敬請期待</p>
                 </div>
             </div>
 
-            <!-- 聯繫方式下拉選單 -->
             <div class="relative">
                 <button id="contact-toggle" class="text-sm font-medium tracking-wider text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition duration-300 flex items-center gap-1.5 focus:outline-none py-2 px-3 rounded-lg hover:bg-stone-200/30 dark:hover:bg-stone-800/30">
                     <span>聯繫方式</span>
@@ -167,24 +110,18 @@
         </div>
     </header>
 
-    <!-- 主體內容區 -->
     <main class="w-full max-w-6xl mx-auto flex-grow flex flex-col justify-center gap-6 sm:gap-8 py-4 relative">
         <section class="max-w-3xl mx-auto text-center space-y-4">
             <span id="concept-tagline" class="text-xs font-semibold tracking-widest text-primary-500 uppercase block"></span>
             <h1 id="concept-title" class="text-xl sm:text-3xl font-light tracking-tight leading-relaxed"></h1>
             <p id="concept-description" class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 max-w-2xl mx-auto leading-relaxed font-light"></p>
         </section>
-
         <section id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-3 items-start md:h-[340px] md:max-h-[340px] relative overflow-visible">
         </section>
     </main>
 
-    <!-- 頁尾 -->
-    <footer class="w-full max-w-6xl mx-auto border-t border-stone-200/40 dark:border-stone-800/40 relative z-10">
-        <!-- 內容已移除 -->
-    </footer>
+    <footer class="w-full max-w-6xl mx-auto border-t border-stone-200/40 dark:border-stone-800/40 relative z-10"></footer>
 
-    <!-- 關於南崧視窗 -->
     <div id="about-modal" class="fixed inset-0 z-50 hidden bg-stone-950/85 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 cursor-pointer">
         <div id="about-modal-content" class="bg-white dark:bg-stone-900/95 border border-stone-200/80 dark:border-stone-800 rounded-none max-w-lg w-full p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 cursor-default">
             <button id="about-modal-close" class="absolute top-4 right-4 text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 text-xl transition-colors"><i class="fas fa-times"></i></button>
@@ -198,11 +135,11 @@
         </div>
     </div>
 
-    <!-- JS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             renderContent();
-            initContactDropdown();
+            initDropdown('contact-toggle', 'contact-dropdown', 'contact-arrow');
+            initDropdown('products-toggle', 'products-dropdown', 'products-arrow');
             initExpandFeature();
             initAboutModal();
         });
@@ -210,28 +147,21 @@
         function renderContent() {
             document.title = `${PORTFOLIO_CONFIG.brandName} | Portfolio`;
             document.getElementById('header-brand-name').textContent = PORTFOLIO_CONFIG.brandName;
-
             const emailLink = document.getElementById('contact-email');
             emailLink.href = `mailto:${PORTFOLIO_CONFIG.contact.email}`;
             emailLink.textContent = PORTFOLIO_CONFIG.contact.email;
-
             const phoneLink = document.getElementById('contact-phone');
             phoneLink.href = `tel:${PORTFOLIO_CONFIG.contact.phone.replace(/[^0-9+]/g, '')}`;
             phoneLink.textContent = PORTFOLIO_CONFIG.contact.phone;
-
             document.getElementById('concept-tagline').textContent = PORTFOLIO_CONFIG.concept.tagline;
             document.getElementById('concept-title').textContent = PORTFOLIO_CONFIG.concept.title;
             document.getElementById('concept-description').textContent = PORTFOLIO_CONFIG.concept.description;
-
             document.getElementById('about-modal-title').textContent = PORTFOLIO_CONFIG.about.title;
             document.getElementById('about-modal-subtitle').textContent = PORTFOLIO_CONFIG.about.subtitle;
             document.getElementById('about-modal-desc').textContent = PORTFOLIO_CONFIG.about.content;
-
             const grid = document.getElementById('portfolio-grid');
-            grid.innerHTML = ''; 
-
-            PORTFOLIO_CONFIG.projects.forEach((proj) => {
-                const cardHTML = `
+            PORTFOLIO_CONFIG.projects.forEach(proj => {
+                grid.insertAdjacentHTML('beforeend', `
                     <div class="portfolio-card group bg-white dark:bg-stone-900 rounded-none overflow-hidden border border-stone-200/60 dark:border-stone-800/60 shadow-sm transition-all duration-500 cursor-pointer relative z-10">
                         <div class="img-wrapper relative overflow-hidden bg-stone-100 dark:bg-stone-800 h-[300px] sm:h-[340px]">
                             <img src="${proj.image}" alt="${proj.title}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600/292524/ffffff?text=${encodeURIComponent(proj.fallbackText)}'">
@@ -240,40 +170,24 @@
                             <h3 class="font-medium text-stone-700 dark:text-stone-300 truncate" title="${proj.title}">${proj.title}</h3>
                         </div>
                     </div>
-                `;
-                grid.insertAdjacentHTML('beforeend', cardHTML);
+                `);
             });
         }
 
-        function initContactDropdown() {
-            const contactToggle = document.getElementById('contact-toggle');
-            const contactDropdown = document.getElementById('contact-dropdown');
-            const contactArrow = document.getElementById('contact-arrow');
-
-            function toggleDropdown(show) {
-                if (show) {
-                    contactDropdown.classList.remove('hidden');
-                    setTimeout(() => {
-                        contactDropdown.classList.remove('opacity-0', 'scale-95');
-                        contactDropdown.classList.add('opacity-100', 'scale-100');
-                        contactArrow.classList.add('rotate-180');
-                    }, 10);
-                } else {
-                    contactDropdown.classList.remove('opacity-100', 'scale-100');
-                    contactDropdown.classList.add('opacity-0', 'scale-95');
-                    contactArrow.classList.remove('rotate-180');
-                    setTimeout(() => { contactDropdown.classList.add('hidden'); }, 300);
-                }
-            }
-
-            contactToggle.addEventListener('click', (e) => {
+        function initDropdown(toggleId, dropdownId, arrowId) {
+            const toggle = document.getElementById(toggleId);
+            const dropdown = document.getElementById(dropdownId);
+            const arrow = document.getElementById(arrowId);
+            toggle.addEventListener('click', (e) => {
                 e.stopPropagation();
-                toggleDropdown(contactDropdown.classList.contains('hidden'));
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!contactDropdown.classList.contains('hidden') && !contactDropdown.contains(e.target) && e.target !== contactToggle) {
-                    toggleDropdown(false);
+                const isHidden = dropdown.classList.contains('hidden');
+                document.querySelectorAll('[id$="-dropdown"]').forEach(d => { if(d.id !== dropdownId) d.classList.add('hidden', 'opacity-0', 'scale-95'); });
+                if (isHidden) {
+                    dropdown.classList.remove('hidden');
+                    setTimeout(() => { dropdown.classList.remove('opacity-0', 'scale-95'); dropdown.classList.add('opacity-100', 'scale-100'); if(arrow) arrow.classList.add('rotate-180'); }, 10);
+                } else {
+                    dropdown.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => { dropdown.classList.add('hidden'); if(arrow) arrow.classList.remove('rotate-180'); }, 300);
                 }
             });
         }
@@ -283,29 +197,14 @@
             grid.addEventListener('click', (e) => {
                 const card = e.target.closest('.portfolio-card');
                 if (!card) return;
-
                 const wrapper = card.querySelector('.img-wrapper');
-                const img = card.querySelector('img');
                 const isExpanded = card.classList.contains('expanded');
-
-                document.querySelectorAll('.portfolio-card').forEach(otherCard => {
-                    if (otherCard !== card && otherCard.classList.contains('expanded')) collapseCard(otherCard);
-                });
-
-                if (isExpanded) {
-                    collapseCard(card);
-                } else {
+                document.querySelectorAll('.portfolio-card').forEach(c => { if(c !== card && c.classList.contains('expanded')) collapseCard(c); });
+                if (isExpanded) collapseCard(card);
+                else {
                     card.classList.add('expanded', 'z-30', 'shadow-2xl', 'scale-[1.01]');
-                    card.classList.remove('z-10');
-                    const startHeight = wrapper.offsetHeight;
-                    wrapper.style.height = `${startHeight}px`;
-                    wrapper.dataset.originalHeight = startHeight;
-                    wrapper.offsetHeight; 
-                    const rect = wrapper.getBoundingClientRect();
-                    const aspectRatio = (img.naturalWidth || 800) / (img.naturalHeight || 600);
-                    let targetHeight = rect.width / aspectRatio;
-                    const maxViewportHeight = window.innerHeight * 0.55;
-                    wrapper.style.height = `${Math.min(targetHeight, maxViewportHeight)}px`;
+                    wrapper.dataset.originalHeight = wrapper.offsetHeight;
+                    wrapper.style.height = `${Math.min(wrapper.offsetWidth / (800/600), window.innerHeight * 0.55)}px`;
                 }
             });
         }
@@ -314,43 +213,14 @@
             card.classList.remove('expanded', 'scale-[1.01]');
             const wrapper = card.querySelector('.img-wrapper');
             wrapper.style.height = `${wrapper.dataset.originalHeight || 340}px`;
-            setTimeout(() => {
-                if (!card.classList.contains('expanded')) {
-                    wrapper.style.height = '';
-                    card.classList.remove('z-30', 'shadow-2xl');
-                    card.classList.add('z-10');
-                }
-            }, 800);
+            setTimeout(() => { if (!card.classList.contains('expanded')) { wrapper.style.height = ''; card.classList.remove('z-30', 'shadow-2xl'); } }, 800);
         }
 
         function initAboutModal() {
-            const aboutToggle = document.getElementById('about-toggle');
-            const aboutModal = document.getElementById('about-modal');
-            const aboutModalContent = document.getElementById('about-modal-content');
-            const aboutModalClose = document.getElementById('about-modal-close');
-
-            function toggleModal(show) {
-                if (show) {
-                    aboutModal.classList.remove('hidden');
-                    aboutModal.offsetHeight;
-                    aboutModal.classList.remove('opacity-0');
-                    aboutModal.classList.add('opacity-100');
-                    aboutModalContent.classList.remove('scale-95');
-                    aboutModalContent.classList.add('scale-100');
-                    document.body.classList.add('overflow-hidden');
-                } else {
-                    aboutModal.classList.remove('opacity-100');
-                    aboutModal.classList.add('opacity-0');
-                    aboutModalContent.classList.remove('scale-100');
-                    aboutModalContent.classList.add('scale-95');
-                    document.body.classList.remove('overflow-hidden');
-                    setTimeout(() => { aboutModal.classList.add('hidden'); }, 300);
-                }
-            }
-
-            aboutToggle.addEventListener('click', () => toggleModal(true));
-            aboutModalClose.addEventListener('click', () => toggleModal(false));
-            aboutModal.addEventListener('click', (e) => { if (e.target === aboutModal) toggleModal(false); });
+            const toggle = document.getElementById('about-toggle');
+            const modal = document.getElementById('about-modal');
+            toggle.addEventListener('click', () => { modal.classList.remove('hidden'); setTimeout(() => modal.classList.add('opacity-100'), 10); });
+            document.getElementById('about-modal-close').addEventListener('click', () => { modal.classList.remove('opacity-100'); setTimeout(() => modal.classList.add('hidden'), 300); });
         }
     </script>
 </body>
